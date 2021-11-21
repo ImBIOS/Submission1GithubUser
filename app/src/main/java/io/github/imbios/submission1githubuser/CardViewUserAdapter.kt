@@ -1,5 +1,6 @@
-package io.github.imbios.submission2githubuser
+package io.github.imbios.submission1githubuser
 
+import User
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,14 +8,14 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import io.github.imbios.submission2githubuser.databinding.ItemCardviewUserBinding
+import io.github.imbios.submission1githubuser.databinding.ItemCardviewUserBinding
 
 
-class CardViewUserAdapter(private val listUserData: ArrayList<UserData>) :
+class CardViewUserAdapter(private val listUser: ArrayList<User>) :
     RecyclerView.Adapter<CardViewUserAdapter.CardViewViewHolder>() {
 
-    private var onItemClickCallback: CardViewUserAdapter.OnItemClickCallback? = null
-    fun setOnItemClickCallback(onItemClickCallback: CardViewUserAdapter.OnItemClickCallback) {
+    private var onItemClickCallback: ListUserAdapter.OnItemClickCallback? = null
+    fun setOnItemClickCallback(onItemClickCallback: ListUserAdapter.OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
     }
 
@@ -28,40 +29,38 @@ class CardViewUserAdapter(private val listUserData: ArrayList<UserData>) :
     }
 
     override fun onBindViewHolder(holder: CardViewUserAdapter.CardViewViewHolder, position: Int) {
-        holder.bind(listUserData[position])
+        holder.bind(listUser[position])
     }
 
-    override fun getItemCount(): Int = listUserData.size
+    override fun getItemCount(): Int = listUser.size
 
     inner class CardViewViewHolder(private val binding: ItemCardviewUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(userData: UserData) {
+        fun bind(user: User) {
             with(binding) {
                 Glide.with(itemView.context)
-                    .load(userData.avatar)
+                    .load(user.avatar)
                     .apply(RequestOptions().override(350, 550))
                     .into(imgItemPhoto)
 
-                binding.txtUsername.text = userData.username
-                binding.txtName.text = userData.name
-                binding.txtCompany.text = userData.company
-                binding.txtLocation.text = userData.location
+                tvItemName.text = user.name
+                tvItemDescription.text = user.company
 
-//                btnSetFavorite.setOnClickListener {
-//                    Toast.makeText(
-//                        itemView.context,
-//                        "Favorite ${userData.name}",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                }
+                btnSetFavorite.setOnClickListener {
+                    Toast.makeText(
+                        itemView.context,
+                        "Favorite ${user.name}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
                 btnSetShare.setOnClickListener {
-                    Toast.makeText(itemView.context, "Share ${userData.name}", Toast.LENGTH_SHORT)
+                    Toast.makeText(itemView.context, "Share ${user.name}", Toast.LENGTH_SHORT)
                         .show()
 
                     val intent = Intent(Intent.ACTION_SEND)
                     intent.putExtra(
                         Intent.EXTRA_TEXT,
-                        "Cool! ${userData.name} working in ${userData.company}"
+                        "Cool! ${user.name} working in ${user.company}"
                     )
                     intent.type = "text/plain"
                     itemView.context.startActivity(Intent.createChooser(intent, "Send To"))
@@ -69,17 +68,17 @@ class CardViewUserAdapter(private val listUserData: ArrayList<UserData>) :
                 itemView.setOnClickListener {
                     Toast.makeText(
                         itemView.context,
-                        "Kamu memilih ${userData.name}",
+                        "Kamu memilih ${user.name}",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
 
-                itemView.setOnClickListener { onItemClickCallback?.onItemClicked(userData) }
+                itemView.setOnClickListener { onItemClickCallback?.onItemClicked(user) }
             }
         }
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: UserData)
+        fun onItemClicked(data: User)
     }
 }

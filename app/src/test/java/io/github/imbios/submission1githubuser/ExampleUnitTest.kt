@@ -1,4 +1,4 @@
-package io.github.imbios.submission2githubuser
+package io.github.imbios.submission1githubuser
 
 import org.junit.Test
 
