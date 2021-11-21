@@ -37,9 +37,29 @@
         android:id="@+id/tv_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:layout_below="@+id/tv_tagline"
         android:layout_marginTop="48dp"
         android:text="@string/object_received"
         android:textAlignment="textStart"
         android:textSize="7pt" />
 </RelativeLayout>
+=======
+        android:layout_gravity="bottom"
+        android:layout_marginTop="16dp"
+        android:minHeight="?actionBarSize"
+        app:layout_constraintTop_toBottomOf="@+id/detail_location"
+        app:tabIndicatorFullWidth="false"
+        app:tabIndicatorHeight="2dp"
+        app:tabMode="fixed"
+        app:tabRippleColor="@null"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_marginTop="375dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+>>>>>>> 759f1ed34922ad9149c9c1aa8a907a5c3dab7af3

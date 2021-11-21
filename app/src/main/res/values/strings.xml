@@ -11,6 +11,7 @@
     <string name="with_cardview">with CardView</string>
     <string name="favorite">Favorite</string>
     <string name="share">Share</string>
+<<<<<<< HEAD
 
     <string-array name="username">
         <item>JakeWharton</item>
@@ -116,4 +117,16 @@
         <item>@drawable/user10</item>
     </string-array>
 
+=======
+    <string name="username">Username</string>
+    <string name="name">Name</string>
+    <string name="location">Location : %s </string>
+    <string name="repository">Repository : %s </string>
+    <string name="company">Company : %s </string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="avatar">Avatar</string>
+    <string name="change_language_settings">Change Language Settings</string>
+    <string name="query_hint">Find Username</string>
+>>>>>>> 759f1ed34922ad9149c9c1aa8a907a5c3dab7af3
 </resources>
